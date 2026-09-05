@@ -1,0 +1,69 @@
+:root {
+  --bg-page: #f7f1e3;
+  --bg-warm: #fffaf2;
+  --sun: #f4e5a3;
+  --sun-soft: #f9f0cb;
+  --lavender: #eee4ff;
+  --lavender-deep: #7d68a9;
+  --sage: #e5efe1;
+  --sage-deep: #6a8577;
+  --blue: #e2edf7;
+  --blue-deep: #5e7fa7;
+  --peach: #fbe7d7;
+  --peach-deep: #b67f61;
+  --cream: #fffdf8;
+  --card-border: rgba(128, 113, 87, 0.15);
+  --text: #403b38;
+  --text-soft: #635c57;
+  --muted: #7b7269;
+  --shadow-soft: rgba(128, 108, 74, 0.10);
+
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top, #fffaf1 0%, #f9f1d8 18%, #f5efe0 42%, var(--bg-page) 100%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg-page);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.28), transparent 20%),
+    radial-gradient(circle at 80% 0%, rgba(244, 229, 163, 0.18), transparent 22%),
+    linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.1));
+}
+
+button,
+input {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+button,
+input {
+  color: inherit;
+}
+
