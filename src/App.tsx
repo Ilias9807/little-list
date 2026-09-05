@@ -22,6 +22,8 @@ function App() {
   const [projectNameDraft, setProjectNameDraft] = useState("");
   const [editingTask, setEditingTask] = useState<{ projectId: number; taskId: number } | null>(null);
   const [taskTitleDraft, setTaskTitleDraft] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const [projectBursts, setProjectBursts] = useState<
     Record<number, { id: number; points: Array<{ x: number; y: number }> }>
   >({});
@@ -280,7 +282,24 @@ function App() {
     setNewProjectName("");
     setTaskDrafts({});
     setAddingTaskFor(null);
+    setSearchQuery("");
+    setSearchOpen(false);
   };
+
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+
+  const filteredProjects = projects.filter((project) => {
+    if (!normalizedQuery) {
+      return true;
+    }
+
+    const projectMatches = project.name.toLowerCase().includes(normalizedQuery);
+    const taskMatches = project.tasks.some((task) =>
+      task.title.toLowerCase().includes(normalizedQuery)
+    );
+
+    return projectMatches || taskMatches;
+  });
 
   return (
     <main className="app-shell">
@@ -296,18 +315,37 @@ function App() {
           </div>
 
           <div className="header-actions" aria-label="Header actions">
-            <button type="button" className="icon-button" aria-label="Search">
+            <button
+              type="button"
+              className={searchOpen ? "icon-button is-active" : "icon-button"}
+              aria-label="Search tasks"
+              onClick={() => setSearchOpen((current) => !current)}
+            >
               ⌕
-            </button>
-            <button type="button" className="icon-button" aria-label="Options">
-              ☰
             </button>
           </div>
         </div>
+
+        {searchOpen ? (
+          <div className="header-search-wrap">
+            <input
+              type="text"
+              className="header-search-input"
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder="Search tasks and projects"
+              autoFocus
+            />
+          </div>
+        ) : null}
       </header>
 
       <section className="project-list" aria-label="Projects">
-        {projects.map((project, index) => {
+        {filteredProjects.length === 0 ? (
+          <p className="empty-state">No matching projects or tasks.</p>
+        ) : null}
+
+        {filteredProjects.map((project, index) => {
           const isOpen = expandedProjects.includes(project.id);
 
           return (
@@ -432,11 +470,24 @@ function App() {
                     </div>
                   ) : null}
 
-                  {project.tasks.length === 0 ? (
-                    <p className="empty-state">No tasks yet. Add one below.</p>
-                  ) : (
-                    <ul className="task-list">
-                      {project.tasks.map((task) => {
+                  {(() => {
+                    const visibleTasks = normalizedQuery
+                      ? project.tasks.filter((task) =>
+                          task.title.toLowerCase().includes(normalizedQuery)
+                        )
+                      : project.tasks;
+
+                    if (visibleTasks.length === 0) {
+                      return (
+                        <p className="empty-state">
+                          {normalizedQuery ? "No matching tasks." : "No tasks yet. Add one below."}
+                        </p>
+                      );
+                    }
+
+                    return (
+                      <ul className="task-list">
+                        {visibleTasks.map((task) => {
                         const isEditingTask =
                           editingTask?.projectId === project.id && editingTask?.taskId === task.id;
 
@@ -501,8 +552,9 @@ function App() {
                           </li>
                         );
                       })}
-                    </ul>
-                  )}
+                      </ul>
+                    );
+                  })()}
 
                   {addingTaskFor === project.id ? (
                     <div className="task-input-row">
