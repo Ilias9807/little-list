@@ -439,7 +439,7 @@ function App() {
       <header className="app-header">
         <div className="brand-row">
           <div className="brand-block">
-            <span className="brand-name">little list</span>
+            <span className="brand-name">little lists</span>
             <span className="brand-tagline">your little place</span>
           </div>
 
@@ -765,7 +765,7 @@ function App() {
       </div>
 
       <p className="site-philosophy">
-        No ads. No accounts. No clutter. Just your list.
+        No ads. No accounts. No clutter. Just your lists.
       </p>
     </main>
   );
