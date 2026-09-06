@@ -1076,3 +1076,61 @@ body::before {
     padding: 0 16px 16px;
   }
 }
+
+
+/* Footer alignment and Ko-fi support link */
+.actions-row {
+  position: relative;
+}
+
+.actions-row .small-affirmation {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.site-philosophy {
+  text-align: center;
+}
+
+.kofi-link {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto 0;
+  padding: 9px 16px;
+  border: 1px solid rgba(143, 131, 170, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.62);
+  color: #6b5a4d;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: 0 7px 18px rgba(120, 102, 82, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.kofi-link:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 9px 20px rgba(120, 102, 82, 0.09);
+}
+
+.kofi-link:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 560px) {
+  .actions-row .small-affirmation {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

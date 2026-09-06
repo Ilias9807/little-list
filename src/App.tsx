@@ -767,6 +767,15 @@ function App() {
       <p className="site-philosophy">
         No ads. No accounts. No clutter. Just your lists.
       </p>
+
+      <a
+        className="kofi-link"
+        href="https://ko-fi.com/littlelists"
+        target="_blank"
+        rel="noreferrer"
+      >
+        ☕ support little lists
+      </a>
     </main>
   );
 }
