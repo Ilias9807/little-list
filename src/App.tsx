@@ -301,11 +301,140 @@ function App() {
     return projectMatches || taskMatches;
   });
 
+  const backgroundLeaves = [
+    { className: "leaf-01", style: { left: "-6%", top: "6%", width: "180px", height: "106px", ["--leaf-opacity" as string]: "0.58", ["--leaf-rotation" as string]: "-18deg", ["--leaf-vein-opacity" as string]: "0.3" } },
+    { className: "leaf-02", style: { left: "6%", top: "3%", width: "92px", height: "54px", ["--leaf-opacity" as string]: "0.18", ["--leaf-rotation" as string]: "-34deg", ["--leaf-vein-opacity" as string]: "0.12" } },
+    { className: "leaf-03", style: { left: "18%", top: "7%", width: "120px", height: "70px", ["--leaf-opacity" as string]: "0.23", ["--leaf-rotation" as string]: "14deg", ["--leaf-vein-opacity" as string]: "0.15" } },
+    { className: "leaf-04", style: { left: "29%", top: "2%", width: "74px", height: "44px", ["--leaf-opacity" as string]: "0.1", ["--leaf-rotation" as string]: "-8deg", ["--leaf-vein-opacity" as string]: "0.07" } },
+    { className: "leaf-05", style: { left: "-10%", top: "17%", width: "126px", height: "74px", ["--leaf-opacity" as string]: "0.4", ["--leaf-rotation" as string]: "24deg", ["--leaf-vein-opacity" as string]: "0.24" } },
+    { className: "leaf-06", style: { left: "9%", top: "22%", width: "102px", height: "60px", ["--leaf-opacity" as string]: "0.19", ["--leaf-rotation" as string]: "-22deg", ["--leaf-vein-opacity" as string]: "0.12" } },
+    { className: "leaf-07", style: { left: "22%", top: "19%", width: "150px", height: "86px", ["--leaf-opacity" as string]: "0.28", ["--leaf-rotation" as string]: "8deg", ["--leaf-vein-opacity" as string]: "0.18" } },
+    { className: "leaf-08", style: { left: "34%", top: "25%", width: "86px", height: "50px", ["--leaf-opacity" as string]: "0.12", ["--leaf-rotation" as string]: "28deg", ["--leaf-vein-opacity" as string]: "0.08" } },
+    { className: "leaf-09", style: { left: "-4%", top: "30%", width: "164px", height: "96px", ["--leaf-opacity" as string]: "0.49", ["--leaf-rotation" as string]: "-14deg", ["--leaf-vein-opacity" as string]: "0.26" } },
+    { className: "leaf-10", style: { left: "13%", top: "31%", width: "74px", height: "44px", ["--leaf-opacity" as string]: "0.15", ["--leaf-rotation" as string]: "20deg", ["--leaf-vein-opacity" as string]: "0.09" } },
+    { className: "leaf-11", style: { left: "25%", top: "36%", width: "116px", height: "68px", ["--leaf-opacity" as string]: "0.24", ["--leaf-rotation" as string]: "-30deg", ["--leaf-vein-opacity" as string]: "0.15" } },
+    { className: "leaf-12", style: { left: "38%", top: "33%", width: "70px", height: "42px", ["--leaf-opacity" as string]: "0.08", ["--leaf-rotation" as string]: "16deg", ["--leaf-vein-opacity" as string]: "0.06" } },
+    { className: "leaf-13", style: { left: "-11%", top: "43%", width: "116px", height: "68px", ["--leaf-opacity" as string]: "0.34", ["--leaf-rotation" as string]: "18deg", ["--leaf-vein-opacity" as string]: "0.21" } },
+    { className: "leaf-14", style: { left: "8%", top: "46%", width: "142px", height: "82px", ["--leaf-opacity" as string]: "0.26", ["--leaf-rotation" as string]: "-18deg", ["--leaf-vein-opacity" as string]: "0.17" } },
+    { className: "leaf-15", style: { left: "23%", top: "42%", width: "82px", height: "48px", ["--leaf-opacity" as string]: "0.14", ["--leaf-rotation" as string]: "32deg", ["--leaf-vein-opacity" as string]: "0.09" } },
+    { className: "leaf-16", style: { left: "33%", top: "49%", width: "128px", height: "74px", ["--leaf-opacity" as string]: "0.21", ["--leaf-rotation" as string]: "8deg", ["--leaf-vein-opacity" as string]: "0.13" } },
+    { className: "leaf-17", style: { left: "-6%", top: "55%", width: "154px", height: "90px", ["--leaf-opacity" as string]: "0.43", ["--leaf-rotation" as string]: "-24deg", ["--leaf-vein-opacity" as string]: "0.25" } },
+    { className: "leaf-18", style: { left: "11%", top: "57%", width: "88px", height: "52px", ["--leaf-opacity" as string]: "0.18", ["--leaf-rotation" as string]: "18deg", ["--leaf-vein-opacity" as string]: "0.11" } },
+    { className: "leaf-19", style: { left: "24%", top: "61%", width: "138px", height: "80px", ["--leaf-opacity" as string]: "0.27", ["--leaf-rotation" as string]: "-12deg", ["--leaf-vein-opacity" as string]: "0.17" } },
+    { className: "leaf-20", style: { left: "37%", top: "57%", width: "72px", height: "42px", ["--leaf-opacity" as string]: "0.1", ["--leaf-rotation" as string]: "26deg", ["--leaf-vein-opacity" as string]: "0.07" } },
+    { className: "leaf-21", style: { left: "2%", top: "69%", width: "104px", height: "60px", ["--leaf-opacity" as string]: "0.17", ["--leaf-rotation" as string]: "-28deg", ["--leaf-vein-opacity" as string]: "0.1" } },
+    { className: "leaf-22", style: { left: "15%", top: "73%", width: "166px", height: "96px", ["--leaf-opacity" as string]: "0.38", ["--leaf-rotation" as string]: "12deg", ["--leaf-vein-opacity" as string]: "0.23" } },
+    { className: "leaf-23", style: { left: "30%", top: "69%", width: "94px", height: "56px", ["--leaf-opacity" as string]: "0.16", ["--leaf-rotation" as string]: "-18deg", ["--leaf-vein-opacity" as string]: "0.1" } },
+    { className: "leaf-24", style: { left: "40%", top: "76%", width: "74px", height: "44px", ["--leaf-opacity" as string]: "0.09", ["--leaf-rotation" as string]: "22deg", ["--leaf-vein-opacity" as string]: "0.06" } },
+    { className: "leaf-25", style: { left: "-7%", top: "84%", width: "144px", height: "82px", ["--leaf-opacity" as string]: "0.3", ["--leaf-rotation" as string]: "24deg", ["--leaf-vein-opacity" as string]: "0.18" } },
+    { className: "leaf-26", style: { left: "11%", top: "88%", width: "84px", height: "48px", ["--leaf-opacity" as string]: "0.15", ["--leaf-rotation" as string]: "-12deg", ["--leaf-vein-opacity" as string]: "0.09" } },
+    { className: "leaf-27", style: { left: "26%", top: "83%", width: "118px", height: "70px", ["--leaf-opacity" as string]: "0.22", ["--leaf-rotation" as string]: "30deg", ["--leaf-vein-opacity" as string]: "0.14" } },
+    { className: "leaf-28", style: { left: "39%", top: "91%", width: "90px", height: "52px", ["--leaf-opacity" as string]: "0.08", ["--leaf-rotation" as string]: "-20deg", ["--leaf-vein-opacity" as string]: "0.05" } },
+    { className: "leaf-29", style: { right: "-6%", top: "6%", width: "180px", height: "106px", ["--leaf-opacity" as string]: "0.55", ["--leaf-rotation" as string]: "18deg", ["--leaf-vein-opacity" as string]: "0.28" } },
+    { className: "leaf-30", style: { right: "6%", top: "3%", width: "92px", height: "54px", ["--leaf-opacity" as string]: "0.17", ["--leaf-rotation" as string]: "32deg", ["--leaf-vein-opacity" as string]: "0.12" } },
+    { className: "leaf-31", style: { right: "18%", top: "8%", width: "120px", height: "70px", ["--leaf-opacity" as string]: "0.22", ["--leaf-rotation" as string]: "-16deg", ["--leaf-vein-opacity" as string]: "0.14" } },
+    { className: "leaf-32", style: { right: "29%", top: "2%", width: "74px", height: "44px", ["--leaf-opacity" as string]: "0.1", ["--leaf-rotation" as string]: "10deg", ["--leaf-vein-opacity" as string]: "0.07" } },
+    { className: "leaf-33", style: { right: "-10%", top: "17%", width: "126px", height: "74px", ["--leaf-opacity" as string]: "0.39", ["--leaf-rotation" as string]: "-24deg", ["--leaf-vein-opacity" as string]: "0.24" } },
+    { className: "leaf-34", style: { right: "9%", top: "22%", width: "102px", height: "60px", ["--leaf-opacity" as string]: "0.18", ["--leaf-rotation" as string]: "20deg", ["--leaf-vein-opacity" as string]: "0.12" } },
+    { className: "leaf-35", style: { right: "22%", top: "19%", width: "150px", height: "86px", ["--leaf-opacity" as string]: "0.27", ["--leaf-rotation" as string]: "-8deg", ["--leaf-vein-opacity" as string]: "0.18" } },
+    { className: "leaf-36", style: { right: "34%", top: "25%", width: "86px", height: "50px", ["--leaf-opacity" as string]: "0.11", ["--leaf-rotation" as string]: "-28deg", ["--leaf-vein-opacity" as string]: "0.08" } },
+    { className: "leaf-37", style: { right: "-4%", top: "30%", width: "164px", height: "96px", ["--leaf-opacity" as string]: "0.47", ["--leaf-rotation" as string]: "14deg", ["--leaf-vein-opacity" as string]: "0.26" } },
+    { className: "leaf-38", style: { right: "13%", top: "31%", width: "74px", height: "44px", ["--leaf-opacity" as string]: "0.15", ["--leaf-rotation" as string]: "-18deg", ["--leaf-vein-opacity" as string]: "0.09" } },
+    { className: "leaf-39", style: { right: "25%", top: "36%", width: "116px", height: "68px", ["--leaf-opacity" as string]: "0.24", ["--leaf-rotation" as string]: "28deg", ["--leaf-vein-opacity" as string]: "0.15" } },
+    { className: "leaf-40", style: { right: "38%", top: "33%", width: "70px", height: "42px", ["--leaf-opacity" as string]: "0.08", ["--leaf-rotation" as string]: "-16deg", ["--leaf-vein-opacity" as string]: "0.06" } },
+    { className: "leaf-41", style: { right: "-11%", top: "43%", width: "116px", height: "68px", ["--leaf-opacity" as string]: "0.33", ["--leaf-rotation" as string]: "-18deg", ["--leaf-vein-opacity" as string]: "0.2" } },
+    { className: "leaf-42", style: { right: "8%", top: "46%", width: "142px", height: "82px", ["--leaf-opacity" as string]: "0.25", ["--leaf-rotation" as string]: "18deg", ["--leaf-vein-opacity" as string]: "0.16" } },
+    { className: "leaf-43", style: { right: "23%", top: "42%", width: "82px", height: "48px", ["--leaf-opacity" as string]: "0.13", ["--leaf-rotation" as string]: "-32deg", ["--leaf-vein-opacity" as string]: "0.09" } },
+    { className: "leaf-44", style: { right: "33%", top: "49%", width: "128px", height: "74px", ["--leaf-opacity" as string]: "0.2", ["--leaf-rotation" as string]: "-10deg", ["--leaf-vein-opacity" as string]: "0.13" } },
+    { className: "leaf-45", style: { right: "-6%", top: "55%", width: "154px", height: "90px", ["--leaf-opacity" as string]: "0.41", ["--leaf-rotation" as string]: "24deg", ["--leaf-vein-opacity" as string]: "0.24" } },
+    { className: "leaf-46", style: { right: "11%", top: "57%", width: "88px", height: "52px", ["--leaf-opacity" as string]: "0.17", ["--leaf-rotation" as string]: "-18deg", ["--leaf-vein-opacity" as string]: "0.1" } },
+    { className: "leaf-47", style: { right: "24%", top: "61%", width: "138px", height: "80px", ["--leaf-opacity" as string]: "0.26", ["--leaf-rotation" as string]: "12deg", ["--leaf-vein-opacity" as string]: "0.17" } },
+    { className: "leaf-48", style: { right: "37%", top: "57%", width: "72px", height: "42px", ["--leaf-opacity" as string]: "0.1", ["--leaf-rotation" as string]: "-26deg", ["--leaf-vein-opacity" as string]: "0.07" } },
+    { className: "leaf-49", style: { right: "2%", top: "69%", width: "104px", height: "60px", ["--leaf-opacity" as string]: "0.17", ["--leaf-rotation" as string]: "28deg", ["--leaf-vein-opacity" as string]: "0.1" } },
+    { className: "leaf-50", style: { right: "15%", top: "73%", width: "166px", height: "96px", ["--leaf-opacity" as string]: "0.36", ["--leaf-rotation" as string]: "-12deg", ["--leaf-vein-opacity" as string]: "0.22" } },
+    { className: "leaf-51", style: { right: "30%", top: "69%", width: "94px", height: "56px", ["--leaf-opacity" as string]: "0.15", ["--leaf-rotation" as string]: "18deg", ["--leaf-vein-opacity" as string]: "0.1" } },
+    { className: "leaf-52", style: { right: "40%", top: "76%", width: "74px", height: "44px", ["--leaf-opacity" as string]: "0.09", ["--leaf-rotation" as string]: "-22deg", ["--leaf-vein-opacity" as string]: "0.06" } },
+    { className: "leaf-53", style: { right: "-7%", top: "84%", width: "144px", height: "82px", ["--leaf-opacity" as string]: "0.29", ["--leaf-rotation" as string]: "-24deg", ["--leaf-vein-opacity" as string]: "0.18" } },
+    { className: "leaf-54", style: { right: "11%", top: "88%", width: "84px", height: "48px", ["--leaf-opacity" as string]: "0.14", ["--leaf-rotation" as string]: "12deg", ["--leaf-vein-opacity" as string]: "0.09" } },
+    { className: "leaf-55", style: { right: "26%", top: "83%", width: "118px", height: "70px", ["--leaf-opacity" as string]: "0.21", ["--leaf-rotation" as string]: "-30deg", ["--leaf-vein-opacity" as string]: "0.14" } },
+    { className: "leaf-56", style: { right: "39%", top: "91%", width: "90px", height: "52px", ["--leaf-opacity" as string]: "0.08", ["--leaf-rotation" as string]: "20deg", ["--leaf-vein-opacity" as string]: "0.05" } },
+    { className: "leaf-57", style: { left: "42%", top: "16%", width: "70px", height: "42px", ["--leaf-opacity" as string]: "0.065", ["--leaf-rotation" as string]: "8deg", ["--leaf-vein-opacity" as string]: "0.045" } },
+    { className: "leaf-58", style: { left: "38%", top: "28%", width: "62px", height: "38px", ["--leaf-opacity" as string]: "0.055", ["--leaf-rotation" as string]: "-20deg", ["--leaf-vein-opacity" as string]: "0.035" } },
+    { className: "leaf-59", style: { left: "42%", top: "41%", width: "78px", height: "46px", ["--leaf-opacity" as string]: "0.065", ["--leaf-rotation" as string]: "18deg", ["--leaf-vein-opacity" as string]: "0.045" } },
+    { className: "leaf-60", style: { left: "41%", top: "58%", width: "66px", height: "40px", ["--leaf-opacity" as string]: "0.06", ["--leaf-rotation" as string]: "-12deg", ["--leaf-vein-opacity" as string]: "0.04" } },
+    { className: "leaf-61", style: { left: "44%", top: "69%", width: "74px", height: "44px", ["--leaf-opacity" as string]: "0.055", ["--leaf-rotation" as string]: "28deg", ["--leaf-vein-opacity" as string]: "0.035" } },
+    { className: "leaf-62", style: { right: "42%", top: "16%", width: "70px", height: "42px", ["--leaf-opacity" as string]: "0.065", ["--leaf-rotation" as string]: "-8deg", ["--leaf-vein-opacity" as string]: "0.045" } },
+    { className: "leaf-63", style: { right: "38%", top: "28%", width: "62px", height: "38px", ["--leaf-opacity" as string]: "0.055", ["--leaf-rotation" as string]: "20deg", ["--leaf-vein-opacity" as string]: "0.035" } },
+    { className: "leaf-64", style: { right: "42%", top: "41%", width: "78px", height: "46px", ["--leaf-opacity" as string]: "0.065", ["--leaf-rotation" as string]: "-18deg", ["--leaf-vein-opacity" as string]: "0.045" } },
+    { className: "leaf-65", style: { right: "41%", top: "58%", width: "66px", height: "40px", ["--leaf-opacity" as string]: "0.06", ["--leaf-rotation" as string]: "12deg", ["--leaf-vein-opacity" as string]: "0.04" } },
+    { className: "leaf-66", style: { right: "44%", top: "69%", width: "74px", height: "44px", ["--leaf-opacity" as string]: "0.055", ["--leaf-rotation" as string]: "-28deg", ["--leaf-vein-opacity" as string]: "0.035" } },
+  ] as const;
+
   return (
     <main className="app-shell">
-      <span className="background-leaf leaf-one" aria-hidden="true" />
-      <span className="background-leaf leaf-two" aria-hidden="true" />
-      <span className="background-leaf leaf-three" aria-hidden="true" />
+      {backgroundLeaves.map((leaf) => (
+        <span
+          key={leaf.className}
+          className={`background-leaf ${leaf.className}`}
+          style={leaf.style as CSSProperties}
+          aria-hidden="true"
+        >
+          <svg
+            className="leaf-art"
+            viewBox="0 0 100 62"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <defs>
+              <clipPath
+                id={`leaf-silhouette-${leaf.className}`}
+                clipPathUnits="userSpaceOnUse"
+              >
+                <path d="M8 42 C18 15, 49 4, 88 12 C79 34, 58 54, 8 42 Z" />
+              </clipPath>
+            </defs>
+
+            {/* Leaf body */}
+            <path
+              className="leaf-body"
+              d="M8 42 C18 15, 49 4, 88 12 C79 34, 58 54, 8 42 Z"
+            />
+
+            {/* All internal lines share the same coordinate system and are
+                clipped to the leaf silhouette. */}
+            <g
+              className="leaf-structure"
+              clipPath={`url(#leaf-silhouette-${leaf.className})`}
+            >
+              {/* Central midrib */}
+              <path
+                className="leaf-midrib"
+                d="M12 39 C27 32, 43 25, 59 18 C71 14, 80 12, 86 12"
+              />
+
+              {/*
+               * Each secondary vein begins on the actual midrib.
+               * The attachment points follow the midrib curve:
+               * left side: 19.5,35.9 / 28.9,31.1 / 38.9,26.3
+               * / 49.3,21.8 / 60.0,17.6
+               * right side uses the same midrib attachment points.
+               */}
+
+              <path className="leaf-vein" d="M19.5 35.9 C16 29 12 24 8 21" />
+              <path className="leaf-vein" d="M28.9 31.1 C25 24 21 19 16 15" />
+              <path className="leaf-vein" d="M38.9 26.7 C35 20 31 15 26 11" />
+              <path className="leaf-vein" d="M49.3 22.0 C46 16 42 12 38 8" />
+              <path className="leaf-vein" d="M60.0 17.7 C58 13 55 9 52 6" />
+
+              <path className="leaf-vein" d="M28.9 31.1 C35 34 40 37 45 41" />
+              <path className="leaf-vein" d="M38.9 26.7 C45 30 51 33 57 37" />
+              <path className="leaf-vein" d="M49.3 22.0 C56 25 62 28 69 31" />
+              <path className="leaf-vein" d="M60.0 17.7 C67 20 74 23 81 26" />
+              <path className="leaf-vein" d="M70.2 14.3 C77 16 83 18 89 21" />
+            </g>
+          </svg>
+        </span>
+      ))}
 
       <header className="app-header">
         <div className="brand-row">
@@ -634,6 +763,10 @@ function App() {
           Reset
         </button>
       </div>
+
+      <p className="site-philosophy">
+        No ads. No accounts. No clutter. Just your list.
+      </p>
     </main>
   );
 }
